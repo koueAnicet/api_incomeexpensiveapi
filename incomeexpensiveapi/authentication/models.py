@@ -17,17 +17,17 @@ class UserManager(BaseUserManager):
         
         user = self.model(
             username=username,
-            email=self.email_normalize, 
+            email=self.normalize_email(email), 
         )
         user.set_password(password)
         user.save()
-        
+        return user
     def create_superuser(self, username, email, password=None):
             
         if password is None:
             raise TypeError("Password should be a none")
        
-        user = self.create_user(
+        user =self.create_user(
             username,
             email, 
             password
@@ -40,7 +40,7 @@ class UserManager(BaseUserManager):
     
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255, unique=True, db_index=True)
-    eamil = models.EmailField(max_length=255, unique=True, db_index=True)
+    email = models.EmailField(max_length=255, unique=True, db_index=True)
     is_verified = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_active = models.BooleanField(default=False)
@@ -54,7 +54,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
     
     def __str__(self):
-        return self.eamil
+        return self.email
     
     def tokens(self):
         return ''

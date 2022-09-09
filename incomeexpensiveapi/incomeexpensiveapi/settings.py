@@ -83,7 +83,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+#affichage des erreurs api
+REST_FRAMEWORK = {
+    
+    'NON_FIELD_ERRORS_KEY': 'error'
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
