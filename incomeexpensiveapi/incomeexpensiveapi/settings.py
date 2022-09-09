@@ -86,7 +86,10 @@ DATABASES = {
 #affichage des erreurs api
 REST_FRAMEWORK = {
     
-    'NON_FIELD_ERRORS_KEY': 'error'
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
 
 # Password validation
@@ -124,6 +127,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+#le cas d'envoir de email
+EMAIL_USE_TLS= True
+EMAIL_HOST='smtp.google.com'
+EMAIL_PORT='587'
+#EMAIL_HOST_USER= os.environ('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD= os.environ('EMAIL_HOST_PASSWORD')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
